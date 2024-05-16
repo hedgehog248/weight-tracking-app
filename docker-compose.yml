@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  frontend:
+    build:
+      context: ./main/frontend/app
+      dockerfile: ../docker/Dockerfile
+    ports:
+      - "3333:3000"
+    volumes:
+      - ./main/frontend/app:/app
+    command: npm run dev
+  backend:
+    build:
+      context: ./main/backend/app
+      dockerfile: ../docker/Dockerfile
+    ports:
+      - "5555:5000"
+    volumes:
+      - ./main/backend/app:/app
+    command: flask --app main run --host 0.0.0.0
+
